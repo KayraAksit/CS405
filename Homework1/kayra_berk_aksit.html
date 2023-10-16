@@ -1,0 +1,75 @@
+<!-- 
+    https://data.tuik.gov.tr/Bulten/Index?p=Olum-ve-Olum-Nedeni-Istatistikleri-2022-49679
+    2018-2022 asrası Ölüm nedeni ve cinsiyete göre ölümler verisi 
+-->
+
+<style type="text/css">
+	svg {
+		border: 2px solid #111;
+	}
+	.bar {
+		fill: #2581C4;
+	}
+    line {
+      stroke: black;
+    }
+    .upline{
+        stroke: crimson;
+        stroke-width: 3px;
+    }
+</style>
+
+<svg width="1000" height="600" id="graph">
+    <text x="10" y="40" style="font-size: 20; font-weight: 900;">Ölüm nedeni ve cinsiyete göre ölümler, 2018-2022</text>
+    <text x="50" y="80" style="font-size: 16; font-weight: 600;">(Ölüm Sayısı)</text>
+    <rect fill="black" x="100" y="100" width="2" height="400"/>
+    <rect fill="black" x="100" y="500" width="800" height="2"/>
+</svg>
+
+
+
+<script type="text/javascript">
+
+    data = [426785, 436624, 509048, 566485, 504839]
+
+    function drawTemplate(){
+        var html = '';
+        
+        height = 100
+        for(i=8;i>0;i--)
+        {
+            html += '<text x="45" y="'+ (height+5)  +'">' + (i*100000) + '</text>'
+            height +=50
+        }
+
+        document.getElementById('graph').innerHTML += html;
+       
+    }
+    drawTemplate()
+
+    function drawBars(){
+        var html = '';
+        var x = 200;
+        for(i = 0; i < data.length; i++) {
+            height = data[i]/2000
+            //Draw Bar
+            html += '<rect class="bar"  x="'+ x +'" y="'+ (500 - height) +'" width="40" height="'+ height +'" />'; 
+            //Add year below bar
+            html += '<text x="'+ x +'" y="'+ (530)  +'">' + (2018+i) + '</text>'; 
+            //Precise numbers inside bar
+            html += '<text x="'+(x+20) +'" y="'+ (430)  +'" style="writing-mode: tb; glyph-orientation-vertical: 0; fill:white;  ">' + (data[i]) + '</text>'; 
+            if(i>0)
+            {
+                prevHeight = data[i-1]/2000
+                console.log(prevHeight)
+                html += '<line x1="'+(x-80)+'" y1="'+(500-prevHeight-20)+'" x2="'+(x+20)+'" y2="'+(500-height-20)+'" class="upline"/>'
+            }
+            x += 100;
+        };
+        document.getElementById('graph').innerHTML += html;
+    }
+
+
+    drawBars();
+
+</script>
