@@ -171,27 +171,21 @@ function getModelViewMatrix() {
 
         let modelViewMatrix = createIdentityMatrix();
 
-        // Apply translation
-  
-
-        const translationMatrix = createTranslationMatrix(0.3, -0.25, 0);
-        modelViewMatrix = multiplyMatrices(modelViewMatrix, translationMatrix);
-    
-        // Apply scaling
-        const scalingMatrix = createScaleMatrix(0.5, 0.5, 1);
-        modelViewMatrix = multiplyMatrices(modelViewMatrix, scalingMatrix);
-    
-        // Apply rotation on x-axis (30 degrees)
-        const rotationXMatrix = createRotationMatrix_X((30 * Math.PI) / 180);
-        modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationXMatrix);
-    
-        // Apply rotation on y-axis (45 degrees)
-        const rotationYMatrix = createRotationMatrix_Y((45 * Math.PI) / 180);
-        modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationYMatrix);
-    
         // Apply rotation on z-axis (60 degrees)
         const rotationZMatrix = createRotationMatrix_Z((60 * Math.PI) / 180);
         modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationZMatrix);
+        // Apply rotation on y-axis (45 degrees)
+        const rotationYMatrix = createRotationMatrix_Y((45 * Math.PI) / 180);
+        modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationYMatrix);
+        // Apply rotation on x-axis (30 degrees)
+        const rotationXMatrix = createRotationMatrix_X((30 * Math.PI) / 180);
+        modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationXMatrix);
+        // Apply scaling
+        const scalingMatrix = createScaleMatrix(0.5, 0.5, 1);
+        modelViewMatrix = multiplyMatrices(modelViewMatrix, scalingMatrix);
+        // Apply translation
+        const translationMatrix = createTranslationMatrix(0.3, -0.25, 0);
+        modelViewMatrix = multiplyMatrices(modelViewMatrix, translationMatrix);
 
     
         return modelViewMatrix;
